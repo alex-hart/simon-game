@@ -1,0 +1,90 @@
+.jumbotron-fluid {
+  font-family: "Press Start 2P", cursive;
+  min-height: 100vh;
+  margin-bottom: 0px;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.game-box {
+  border: 2px solid black;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  border-radius: 50%;
+  background: black;
+  box-shadow: 5px 5px 10px grey;
+}
+
+#yellow-btn {
+  background: yellow;
+}
+
+#red-btn {
+  background: red;
+  margin-right: 0px;
+}
+
+#blue-btn {
+  background: blue;
+  margin-top: 120px;
+}
+
+#green-btn {
+  background: green;
+  margin-left: 0px;
+}
+
+.game-button {
+  border: 1px solid black;
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+#reset, #start {
+  color: red;
+}
+
+.current {
+  background-color: grey;
+}
+
+.mode-buttons {
+  width: 200px;
+  margin: 0 auto;
+}
+
+#game-mode {
+  margin-top: 40px;
+}
+
+.main-text {
+  font-size: 24px;
+}
+
+.anchor {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.anchor:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
