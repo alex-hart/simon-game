@@ -1,5 +1,5 @@
-$('#reset').hide();
 $(function() {
+
   var series = [];
   var userInput = [];
   var activateTimer;
@@ -12,33 +12,48 @@ $(function() {
   var mode = "normal";
   var delay = 1000;
 
-  $('#red-btn').on('click', function(e) {
+  var $score = $('#score');
+  var $redBtn = $('#red-btn');
+  var $blueBtn = $('#blue-btn');
+  var $greenBtn = $('#green-btn');
+  var $yellowBtn = $('#yellow-btn');
+  var $sound1 = $('#sound1')[0];
+  var $sound2 = $('#sound2')[0];
+  var $sound3 = $('#sound3')[0];
+  var $sound4 = $('#sound4')[0];
+  var $reset = $('#reset');
+  var $hard = $('#hard');
+  var $normal = $('#normal');
+  var $start = $('#start');
+
+  $reset.hide();
+  $redBtn.on('click', function(e) {
     e.preventDefault();
-    $('#sound1')[0].play();
+    $sound1.play();
     userInput.push(0);
     if (allowClick === 1) {
       setTimeout(check, delay);
     }
   });
-  $('#blue-btn').on('click', function(e) {
+  $blueBtn.on('click', function(e) {
     e.preventDefault();
-    $('#sound2')[0].play();
+    $sound2.play();
     userInput.push(1);
     if (allowClick === 1) {
       setTimeout(check, delay);
     }
   });
-  $('#yellow-btn').on('click', function(e) {
+  $yellowBtn.on('click', function(e) {
     e.preventDefault();
-    $('#sound3')[0].play();
+    $sound3.play();
     userInput.push(2);
     if (allowClick === 1) {
       setTimeout(check, delay);
     }
   });
-  $('#green-btn').on('click', function(e) {
+  $greenBtn.on('click', function(e) {
     e.preventDefault();
-    $('#sound4')[0].play();
+    $sound4.play();
     userInput.push(3);
     if (allowClick === 1) {
       setTimeout(check, delay);
@@ -57,13 +72,13 @@ $(function() {
 
   function deactivateBtn() {
     if (series[i - 1] == 0) {
-      $('#red-btn').css('background', 'red');
+      $redBtn.css('background', 'red');
     } else if (series[i - 1] == 1) {
-      $('#blue-btn').css('background', 'blue');
+      $blueBtn.css('background', 'blue');
     } else if (series[i - 1] == 2) {
-      $('#yellow-btn').css('background', 'yellow');
+      $yellowBtn.css('background', 'yellow');
     } else {
-      $('#green-btn').css('background', 'green');
+      $greenBtn.css('background', 'green');
     }
   }
 
@@ -72,17 +87,17 @@ $(function() {
       clearInterval(activateTimer);
     } else {
       if (series[i] === 0) {
-        $('#red-btn').css('background', '#ff5656');
-        $('#sound1')[0].play();
+        $redBtn.css('background', '#ff5656');
+        $sound1.play();
       } else if (series[i] === 1) {
-        $('#blue-btn').css('background', '#8a7fff');
-        $('#sound2')[0].play();
+        $blueBtn.css('background', '#8a7fff');
+        $sound2.play();
       } else if (series[i] === 2) {
-        $('#yellow-btn').css('background', '#edfcab');
-        $('#sound3')[0].play();
+        $yellowBtn.css('background', '#edfcab');
+        $sound3.play();
       } else {
-        $('#green-btn').css('background', '#8cff89');
-        $('#sound4')[0].play();
+        $greenBtn.css('background', '#8cff89');
+        $sound4.play();
       }
       deactivateTimer = setTimeout(deactivateBtn, delay);
       i += 1;
@@ -106,28 +121,28 @@ $(function() {
       if (userInput[j] === series[j]) {
         score += 1;
         if (score === 20) {
-          $('#score').text('You win!');
+          $score.text('You win!');
           allowClick = 0;
         } else {
-          $('#score').text('Score: ' + score);
+          $score.text('Score: ' + score);
           userInput = [];
           j = 0;
           newStep();
         }
       } else {
         if (mode === "normal") {
-          $('#score').text('!!');
-          $('#score').css('color', 'red');
+          $score.text('!!');
+          $score.css('color', 'red');
           setTimeout(function() {
-            $('#score').text('Score: ' + score);
-            $('#score').css('color', 'black');
+            $score.text('Score: ' + score);
+            $score.css('color', 'black');
           }, 1000);
           userInput = [];
           j = 0;
           playSeries();
         } else {
-          $('#score').text('!!');
-          $('#score').css('color', 'red');
+          $score.text('!!');
+          $score.css('color', 'red');
           setTimeout(reset, 1000);
         }
       }
@@ -136,18 +151,18 @@ $(function() {
         j += 1;
       } else {
         if (mode === "normal") {
-         $('#score').text('!!');
-          $('#score').css('color', 'red');
+         $score.text('!!');
+          $score.css('color', 'red');
           setTimeout(function() {
-            $('#score').text('Score: ' + score);
-            $('#score').css('color', 'black');
+            $score.text('Score: ' + score);
+            $score.css('color', 'black');
           }, 1000);
           userInput = [];
           j = 0;
           playSeries();
         } else {
-          $('#score').text('!!');
-          $('#score').css('color', 'red');
+          $score.text('!!');
+          $score.css('color', 'red');
           setTimeout(reset, delay);
         }
       }
@@ -161,70 +176,70 @@ $(function() {
     series = [];
     j = 0;
     score = 0;
-    $('#score').css('color', 'black');
-    $('#score').text('Score: ' + score);
+    $score.css('color', 'black');
+    $score.text('Score: ' + score);
     clearTimeout(deactivateTimer);
     clearInterval(activateTimer);
     newStep();
   }
 
-  $('#reset').on('click', function(e) {
+  $reset.on('click', function(e) {
     e.preventDefault();
     reset();
   })
 
-  $('#normal').on('click', function(e) {
+  $normal.on('click', function(e) {
     e.preventDefault();
     mode = "normal";
-    $('#hard').removeClass('current');
+    $hard.removeClass('current');
     $(this).addClass('current');
   });
 
-  $('#hard').on('click', function(e) {
+  $hard.on('click', function(e) {
     e.preventDefault();
     mode = "hard";
-    $('#normal').removeClass('current');
+    $normal.removeClass('current');
     $(this).addClass('current');
   });
 
   //Manual CSS rules to avoid colour bug
-  $('#red-btn').on('mousedown', function(e) {
+  $redBtn.on('mousedown', function(e) {
     e.preventDefault();
     $(this).css('background', '#ff5656');
   });
-  $('#red-btn').on('mouseup', function(e) {
+  $redBtn.on('mouseup', function(e) {
     e.preventDefault();
     $(this).css('background', 'red');
   });
-  $('#blue-btn').on('mousedown', function(e) {
+  $blueBtn.on('mousedown', function(e) {
     e.preventDefault();
     $(this).css('background', '#8a7fff');
   });
-  $('#blue-btn').on('mouseup', function(e) {
+  $blueBtn.on('mouseup', function(e) {
     e.preventDefault();
     $(this).css('background', 'blue');
   });
-  $('#yellow-btn').on('mousedown', function(e) {
+  $yellowBtn.on('mousedown', function(e) {
     e.preventDefault();
     $(this).css('background', '#edfcab');
   });
-  $('#yellow-btn').on('mouseup', function(e) {
+  $yellowBtn.on('mouseup', function(e) {
     e.preventDefault();
     $(this).css('background', 'yellow');
   });
-  $('#green-btn').on('mousedown', function(e) {
+  $greenBtn.on('mousedown', function(e) {
     e.preventDefault();
     $(this).css('background', '#8cff89');
   });
-  $('#green-btn').on('mouseup', function(e) {
+  $greenBtn.on('mouseup', function(e) {
     e.preventDefault();
     $(this).css('background', 'green');
   });
 
-  $('#start').on('click', function(e) {
+  $start.on('click', function(e) {
     e.preventDefault();
     newStep();
-    $('#start').hide();
-    $('#reset').show();
+    $start.hide();
+    $reset.show();
   });
 });
